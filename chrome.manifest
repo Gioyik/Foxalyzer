@@ -1,0 +1,3 @@
+content csp-validator chrome/
+locale  csp-validator en-US locale/en-US/
+skin    csp-validator classic/1.0 skin/
