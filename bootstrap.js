@@ -30,7 +30,7 @@ XPCOMUtils.defineLazyGetter(this, "toolStrings", () =>
  */
 XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
   // A unique id. Must not contain whitespace.
-  id: "csp-validator",
+  id: "foxalyzer",
 
   // The position of the tool's tab within the toolbox
   ordinal: 99,
@@ -62,7 +62,7 @@ XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
   // This function is called when the user select the tool tab.
   // It is called only once the toold definition's URL is loaded.
   build: function(iframeWindow, toolbox) {
-    Cu.import("chrome://csp-validator/content/panel.js");
+    Cu.import("chrome://foxalyzer/content/panel.js");
     let panel = new MyAddonPanel(iframeWindow, toolbox);
     return panel.open();
   }

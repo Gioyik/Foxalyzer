@@ -6,13 +6,13 @@
   <Description about="urn:mozilla:install-manifest">
 
     <!-- The id of the extension. -->
-    <em:id>csp-validator@mozilla.com</em:id>
+    <em:id>foxalyzer@mozilla.com</em:id>
 
     <!-- A version string identifying the version of the add-on. -->
     <em:version>0.1</em:version>
 
     <!-- The name of the add-on; intended for display in the UI. -->
-    <em:name>CSP Validator</em:name>
+    <em:name>Foxalyzer</em:name>
 
     <!-- A short description to display in the user interface. -->
     <em:description>Developer tool to test and check vulnerabilities on your code.</em:description>
