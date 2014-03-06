@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+
+var fs = require("fs");
+
+
+
+console.log("Checking that jsrepository is valid json...");
+var jsRepo = JSON.parse(fs.readFileSync(__dirname + "/jsrepository.json"));
+console.log("Validating regexes...")
+var count = 0;
+for (var i in jsRepo) {
+	var types = ["uri", "filecontent", "filename", "filecontentreplace"];
+	for (var j in types) {
+		for (var k in jsRepo[i].extractors[types[j]]) {
+			try {
+				var restring = jsRepo[i].extractors[types[j]][k];
+				count++;
+				if (types[j] == "filecontentreplace") {
+					var ar = /^\/(.*[^\\])\/([^\/]+)\/$/.exec(restring);
+					if (ar == null) {
+						console.warn("RegExp error - should be on format \"/search/replacement/\"", i, types[j], k);
+						process.exit(1);
+					}
+					restring = ar[1];
+				}
+				var r = new RegExp(restring);
+			} catch(e) {
+				console.warn("RegExp error ", i, types[j], k);
+				throw e;
+			}
+		}
+	}  
+}
+console.log(count + " regexes validated.")
+
+
+console.log("Checking that npmrepository is valid json...");
+JSON.parse(fs.readFileSync(__dirname + "/npmrepository.json"));
+
+console.log("Success");

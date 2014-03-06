@@ -1,0 +1,41 @@
+
+2014-03-06 [:cr]
+
+I have tried both methods, but decided to go with subtrees for now. Submodules seem to work better when you don't need to patch a lot in the other repos. With subtrees, however, the repos become a natural part of your tree, and commiting on top of them will not be a problem.
+
+Every dev working on the subtrees (merging changes from upstream, for example) should locally add the remotes as described below.
+
+
+
+## Subtrees
+
+# http://blogs.atlassian.com/2013/05/alternatives-to-git-submodule-git-subtree/
+# https://github.com/apenwarr/git-subtree/blob/master/git-subtree.txt
+
+git remote add -f retire.js git@github.com:bekk/retire.js.git
+git remote add -f jsprime git@github.com:dpnishant/jsprime.git
+git remote add -f scanjs git@github.com:mozilla/scanjs.git
+
+git subtree add --prefix modules/scanjs scanjs master --squash
+git subtree add --prefix modules/jsprime jsprime master --squash
+git subtree add --prefix modules/retire.js retire.js master --squash
+
+
+
+## Submodules
+
+# http://blogs.atlassian.com/2013/03/git-submodules-workflows-tips/
+
+git submodule add git@github.com:mozilla/scanjs.git modules/scanjs
+git submodule add git@github.com:bekk/retire.js.git modules/retire.js
+git submodule add git@github.com:dpnishant/jsprime.git modules/jsprime
+git commit -m 'scanjs, retire.js, and jsprime added as submodules'
+
+# cloning a repo containing submodules requires
+git submodule init
+git submodule update
+
+# later on all submodules can be updated in a single command
+git submodule update --init --recursive
+
+
