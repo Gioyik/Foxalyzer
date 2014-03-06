@@ -42,10 +42,10 @@ XPCOMUtils.defineLazyGetter(this, "toolDefinition", () => ({
   modifiers: osString == "Darwin" ? "accel,alt" : "accel,shift",
 
   // The url of the icon, displayed in the Toolbox.
-  icon: "chrome://csp-validator/skin/icon.png",
+  icon: "chrome://foxalyzer/skin/icon.png",
 
   // A tool lives in its own iframe. The Toolbox will load this URL.
-  url: "chrome://csp-validator/content/tool.xul",
+  url: "chrome://foxalyzer/content/tool.xul",
 
   // The tool's name. Showed in Firefox' tool menu and in the Toolbox' tab.
   label: toolStrings.GetStringFromName("CSP.label"),
